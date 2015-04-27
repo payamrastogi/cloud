@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+header.index{background-color:#1D2123; padding:20px 10px;}
+header.page2{background-color:#1D2123;}
+body{background: url(../img/eco/bk-eco.jpg) repeat-y;}
+.btn-login{background:#1ABC9C; color:#fff; border:0; border-radius:0; padding:5px 20px; font-size:16px; border:1px solid #1ABC9C; float:right;}
+.btn-login img{height:30px; width:30px; }
+.btn-login:hover{background:#1D2123; color:#fff; border:1px solid #1ABC9C; transition: 0.5s ease;}
+.front-title, .front-subtitle{color:#fff;}
+h1.front-title{font-size:72px; display:block; margin-left:auto; margin-right:auto; text-align:center; margin-top:150px;}
+h6.front-subtitle{font-size:16px; display:block; margin-left:auto; margin-right:auto; text-align:center;}
+.nav-page{background-color:#1D2123;border:0px; border-radius:0px;}
+.box{margin:20px 0; background:#fff; padding-bottom:20px; cursor:default; height:300px;}
+.box-title{background:url(../img/eco/bk-eco-ga.jpg);}
+.box-title h1{color:#fff !important; padding:20px !important;}
+.navbar-fixed-top, .navbar-fixed-bottom{position:relative;}
+a.noshow{text-decoration:none;}
+.inputbox{margin:10px 0;}
