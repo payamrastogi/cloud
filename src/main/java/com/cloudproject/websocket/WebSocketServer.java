@@ -40,7 +40,7 @@ public class WebSocketServer
 			RequestParameters requestParam = new RequestParameters();
 			requestParam.setLatitude(Double.parseDouble(location[0]));
 			requestParam.setLongitude(Double.parseDouble(location[1]));
-			requestParam.setRadius(250);
+			requestParam.setRadius(1000);
 			requestParam.setRankby("distance");
 			requestParam.setOpenNow(true);
 			String[] types = { "cafe", "bakery", "restaurant" };

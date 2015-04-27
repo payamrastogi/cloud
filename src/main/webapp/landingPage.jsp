@@ -40,10 +40,7 @@
 		    	navigator.geolocation.getCurrentPosition(function(position) 
 		    	{
 		      		startPos = position;
-		      		document.getElementById("startLat").innerHTML = startPos.coords.latitude;
-		     		document.getElementById("startLon").innerHTML = startPos.coords.longitude;
 		     		openSocket();
-		     		webSocket.send(startPos.coords.latitude+","+startPos.coords.longitude);
 		     		
 		    	}, function(error) 
 		    	{
@@ -57,31 +54,10 @@
 	
 		    	navigator.geolocation.watchPosition(function(position) 
 		    	{
-		    		document.getElementById("currentLat").innerHTML = position.coords.latitude;
-		     	 	document.getElementById("currentLon").innerHTML = position.coords.longitude;
-		      		document.getElementById("distance").innerHTML =
-		       	 	calculateDistance(startPos.coords.latitude, startPos.coords.longitude, position.coords.latitude, position.coords.longitude);
+		    		webSocket.send(startPos.coords.latitude+","+startPos.coords.longitude);
 		    	});
 		  }
 	};
-
-	// Reused code - copyright Moveable Type Scripts - retrieved May 4, 2010.
-	// http://www.movable-type.co.uk/scripts/latlong.html
-	// Under Creative Commons License http://creativecommons.org/licenses/by/3.0/
-	function calculateDistance(lat1, lon1, lat2, lon2)
-	{
-		var R = 6371; // km
-	  	var dLat = (lat2-lat1).toRad();
-	  	var dLon = (lon2-lon1).toRad();
-	  	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLon/2) * Math.sin(dLon/2);
-	  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-	 	var d = R * c;
-	  	return d;
-	}
-	Number.prototype.toRad = function() 
-	{
-	  	return this * Math.PI / 180;
-	}
 	
 	var webSocket;
     var target = 'ws://' + window.location.host + "/CloudProject/websocket";
@@ -112,7 +88,7 @@
         {
         	 alert("hello");
         	 var str = JSON.parse(event.data);
-         	 writeResponse(str.status);
+         	 writeResponse(str.results[0].name);
         };
 
         webSocket.onclose = function(event)
@@ -136,19 +112,6 @@
 </head>
 
 <body>
-	<div id="tripmeter">
-		<p>
-			Starting Location (lat, lon):<br /> <span id="startLat">???</span>°,
-			<span id="startLon">???</span>°
-		</p>
-		<p>
-			Current Location (lat, lon):<br /> <span id="currentLat">???</span>°,
-			<span id="currentLon">???</span>°
-		</p>
-		<p>
-			Distance from starting location:<br /> <span id="distance">0</span>
-			km
-		</p>
 	</div>
 	<div id="messages"></div>
 	<div class="pre-loader">

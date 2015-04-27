@@ -39,6 +39,7 @@ public class HttpFetcher
 	public JSONObject readJsonFromUrl() throws IOException, JSONException 
 	{
 		String url = config.getHostName() + this.requestParam.generateUrlNearBySearch();
+		System.out.println(url);
 		InputStream is = new URL(url).openStream();
 		try 
 		{
