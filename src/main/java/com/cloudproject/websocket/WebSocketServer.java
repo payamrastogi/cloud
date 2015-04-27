@@ -48,8 +48,7 @@ public class WebSocketServer
 			HttpFetcher httpFetcher = new HttpFetcher(config, requestParam);
 			JSONObject json = httpFetcher.readJsonFromUrl();
 			System.out.println(json.toString());
-			session.getBasicRemote().sendText("helo");
-			System.out.println("hello" + session.getId());
+			session.getBasicRemote().sendText(json.toString());
 		}
 		catch(IOException | JSONException e)
 		{

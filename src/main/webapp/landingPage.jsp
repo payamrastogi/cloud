@@ -112,7 +112,7 @@
         {
         	 alert("hello");
         	 var str = JSON.parse(event.data);
-         	 writeResponse(event.data);
+         	 writeResponse(str.status);
         };
 
         webSocket.onclose = function(event)
