@@ -9,6 +9,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +41,7 @@ public class WebSocketServer
 			RequestParameters requestParam = new RequestParameters();
 			requestParam.setLatitude(Double.parseDouble(location[0]));
 			requestParam.setLongitude(Double.parseDouble(location[1]));
-			requestParam.setRadius(1000);
+			requestParam.setRadius(250);
 			requestParam.setRankby("distance");
 			requestParam.setOpenNow(true);
 			String[] types = { "cafe", "bakery", "restaurant" };
@@ -48,7 +49,9 @@ public class WebSocketServer
 			HttpFetcher httpFetcher = new HttpFetcher(config, requestParam);
 			JSONObject json = httpFetcher.readJsonFromUrl();
 			System.out.println(json.toString());
-			session.getBasicRemote().sendText(json.toString());
+			JSONArray array = json.getJSONArray("results");
+			JSONObject jsonObj = array.getJSONObject(0);
+			session.getBasicRemote().sendText(jsonObj.getString("name")+"#"+array.getJSONObject(1).getString("name"));
 		}
 		catch(IOException | JSONException e)
 		{

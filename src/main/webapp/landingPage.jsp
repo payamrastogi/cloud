@@ -22,6 +22,7 @@
 
 
 <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -30,9 +31,11 @@
 
 
 <script>
+
 	window.onload = function() 
 	{
-		  openSocket();
+		
+		openSocket();
 		  var startPos;
 	
 		  if (navigator.geolocation) 
@@ -87,8 +90,22 @@
         webSocket.onmessage = function(event)
         {
         	 alert("hello");
-        	 var str = JSON.parse(event.data);
-         	 writeResponse(str.results[0].name);
+        	 var str = event.data;
+        	 var temp = new Array();
+        	 temp = str.split("#"); 
+         	// writeResponse(temp[0]);
+         	// writeResponse(temp[1]);
+         	//var rowNum = 0;
+         	var html = $('.boxed').html();
+         	for(i=0;i<2;i++)
+         		{
+         	//alert(rowNum);
+         	 
+		      $('.boxed').append(html);
+		      $('.box').attr('id', 'box' + i);
+		      $("#setbox").append("<br/>" +temp[i]);	
+		      rowNum++;
+         		}         	
         };
 
         webSocket.onclose = function(event)
@@ -100,8 +117,22 @@
 
      function writeResponse(text)
      {
-         messages.innerHTML += "<br/>" + text;
+         //setbox.innerHTML += "<br/>" + text;
+         		
+ 		       
      }
+     
+   // function forResponse(text)
+   // {
+    	
+			// alert("clicked");
+		//	for(i=0;i<2;i++)
+		//		{
+		      
+		      
+		//		}
+  //  }
+    
      
      function onError(event) 
      {
@@ -113,7 +144,6 @@
 
 <body>
 	</div>
-	<div id="messages"></div>
 	<div class="pre-loader">
 		<div class="load-con">
 			<img src="img/eco/logo.png" class="animated fadeInDown" alt="">
@@ -160,64 +190,24 @@
 		</nav>
 	</header>
 
-
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="box" onclick="location.href=''">
-					<div class="box-title">
+		<div class="row boxed">
+			<div class="col-lg-4" >
+				<div class="box" onclick="location.href=''" id="box" size="20">
+					<div class="box-title" >
 						<h1>Lorem Ipsum</h1>
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
-
+							<div id="setbox"></div>
 							<h6>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</h6>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6">
-				<div class="box" onclick="location.href=''">
-					<div class="box-title">
-						<h1>Lorem Ipsum</h1>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-
-							<h6>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</h6>
-						</div>
-					</div>
-				</div>
-			</div>
+			  
 		</div>
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="box" onclick="location.href=''">
-					<div class="box-title">
-						<h1>Lorem Ipsum</h1>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-
-							<h6>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="box" onclick="location.href=''">
-					<div class="box-title">
-						<h1>Lorem Ipsum</h1>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-
-							<h6>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
