@@ -59,6 +59,11 @@
         <version>1.7.10</version>
       </dependency>
 	
+		<dependency>
+            <groupId>com.github.thiagolocatelli</groupId>
+            <artifactId>parse4j</artifactId>
+            <version>1.4</version>
+        </dependency>
   </dependencies>
   <build>
     <finalName>CloudProject</finalName>

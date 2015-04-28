@@ -14,7 +14,7 @@ public class DBConnection {
 		Class.forName("com.mysql.jdbc.Driver");
 	} catch (ClassNotFoundException e) {
 		System.out.println("Where is your MySQL JDBC Driver?");
-		e.printStackTrace();
+		//e.printStackTrace();
 		return null;
 	}
  

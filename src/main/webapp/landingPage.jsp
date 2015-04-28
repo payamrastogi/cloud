@@ -175,13 +175,9 @@
 					id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#about">about</a></li>
-						<li><a href="#features">features</a></li>
-						<li><a href="#reviews">reviews</a></li>
-						<li><a href="#screens">screens</a></li>
-						<li><a href="#demo">demo</a></li>
-						<li><a class="getApp" href="#getApp">get app</a></li>
-						<li><a href="#support">support</a></li>
+						<li><a href="#about">Home</a></li>
+						<li><a href="#search">Search</a></li>
+						<li><a href="#profile">Profile</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

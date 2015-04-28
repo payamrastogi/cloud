@@ -55,6 +55,7 @@ public class FBGraph
 			JSONObject json = new JSONObject(fbGraph);
 			fbProfile.put("id", json.getString("id"));
 			fbProfile.put("first_name", json.getString("first_name"));
+			fbProfile.put("last_name", json.getString("last_name"));
 			if (json.has("email"))
 				fbProfile.put("email", json.getString("email"));
 			if (json.has("gender"))
