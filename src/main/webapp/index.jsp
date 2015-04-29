@@ -545,7 +545,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="hanging-phone scrollpoint sp-effect2 hidden-xs">
-                            <img src="img/eco/eco-angled2.png" alt="">
+                            <!-- <img src="img/eco/eco-angled2.png" alt="">-->
                         </div>
                         <div class="platforms">
                             <a href="<%=fbConnection.getFBAuthUrl()%>" class="btn btn-primary inverse scrollpoint sp-effect1">
