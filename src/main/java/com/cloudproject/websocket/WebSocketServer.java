@@ -36,7 +36,7 @@ public class WebSocketServer
 			String[] location = message.split(",");
 			File homedir = new File(System.getProperty("user.home"));
 			System.out.println(homedir);
-			File file = new File(homedir, "workspace/CloudProject/src/main/resources/config.properties");
+			File file = new File(homedir, "Dropbox/repositories/cloud/src/main/resources/config.properties");
 			Config config = new Config(file);
 			RequestParameters requestParam = new RequestParameters();
 			requestParam.setLatitude(Double.parseDouble(location[0]));
