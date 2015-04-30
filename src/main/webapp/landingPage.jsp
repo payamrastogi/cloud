@@ -23,19 +23,52 @@
 
 <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
+<script src="http://connect.facebook.net/en_US/all.js"></script>
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<script language="javascript" type="text/javascript">
+    FB.init({
+        appId: '404087249752808',
+        status: true, 
+        cookie: true, 
+        xfbml: true
+    }); 
+    
+    function fb_publish(name, address, direction) 
+    {
+        FB.ui(
+          		{
+            		method: 'feed',
+            		message: 'Message here.',
+            		name: 'Name of the Restaurant',
+            		description: 'Adress of the Restaurant',
+            		link:'https://maps.google.com/maps?saddr=40.725153500000005,-74.063848&daddr=Guerrero Deli Restaurant,6 Jordan Avenue, Jersey City',
+            	 	picture: 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBgAAAAK0YplYnimH7y8TjQcUl3XVEto07Ir-IVlBkuZxz1Z3P51lg-sgv8xa6MMIVPxbLJsMJgU1OmZQOewkkrSafGW-7nqdNqgW3QqoJCQrsal14WO2OvqqCH8S9a6AAwy0ccPPKqBpl3VZnVuRdaLVbtVPMLrvKOOZgzDp1po9MxbL9EhCCVXR7XhHh34fnthh2YXDrGhRtfkghrxCqZtIIlQRI-66ciq-GRg&key=AIzaSyDnxFImus4mQi1h9cicwn4z_z1MkGlT3eA'
+          		},
+          		function(response) 
+          		{
+            		if (response && response.post_id)
+            		{
+              			alert('Post was published.');
+            		} 
+            		else 
+            		{
+              			alert('Post was not published.');
+           			}
+          		}
+        	);  
+     	}
+</script>
 
 <script>
-
+	var currentLat;
+	var currentLng;
 	window.onload = function() 
 	{
-		
-		openSocket();
+		  openSocket();
 		  var startPos;
 	
 		  if (navigator.geolocation) 
@@ -43,20 +76,20 @@
 		    	navigator.geolocation.getCurrentPosition(function(position) 
 		    	{
 		      		startPos = position;
-		     		openSocket();
-		     		
-		    	}, function(error) 
+		      		currentLat = startPos.coords.latitude;
+		      		currentLng = startPos.coords.longitude;
+		     		webSocket.send(startPos.coords.latitude+","+startPos.coords.longitude);
+		    	}, 
+		    	function(error) 
 		    	{
 		      		alert("Error occurred. Error code: " + error.code);
-		      		// error.code can be:
-		      		//   0: unknown error
-		      		//   1: permission denied
-		     		//   2: position unavailable (error response from locaton provider)
-		      		//   3: timed out
 		    	});
 	
 		    	navigator.geolocation.watchPosition(function(position) 
 		    	{
+		    		startpos = position;
+		    		currentLat = startPos.coords.latitude;
+		      		currentLng = startPos.coords.longitude;
 		    		webSocket.send(startPos.coords.latitude+","+startPos.coords.longitude);
 		    	});
 		  }
@@ -87,28 +120,9 @@
             onError(event)
         };
 
-        
         webSocket.onmessage = function(event)
         {
-        	 //alert("hello");
-        	 var str = event.data;
-        	 var temp = new Array();
-        	 temp = str.split("#"); 
-         	// writeResponse(temp[0]);
-         	// writeResponse(temp[1]);
-         	//var rowNum = 0;
-         	//var html = $('.boxed').html();
-         	//for(i=0;i<2;i++)
-         	//	{
-         	//alert(rowNum);
-         	 
-		   //   $('.boxed').append(html);
-		    //  $('.box').attr('id', 'box' + i);
-		   //   $("#setbox").append("<br/>" +temp[i]);	
-		   //   rowNum++;
-         	//	}  
-         				
-         	
+        	 parseJSON(event.data);
         };
 
         webSocket.onclose = function(event)
@@ -117,53 +131,47 @@
         };
      }
     
-
      function writeResponse(text)
      {
          setbox.innerHTML += "<br/>" + text;
-         
- 		       
      }
      
-     var temp=["hello","world","hello","world","hello","world","aslsafn","asfasfaf", "csdfsf","sdsdfsdf"];
-		$(document).ready(function() {	
-			
-			var html = $('.boxed').html();
-			for (var i=0;i<temp.length-1;i++) {
-				$('div.box').attr('id', 'id'+i);
-				$('.boxed').append(html);
-			}
-			
-			var ID = 0;
-			$('div.box').each(function() {
-			 	ID++;
- 			$(this).attr('id', 'id'+ID);
-			});
-			
-			var id = 0;
-			var i=0;
-			$('div.setbox').each(function() {
-			 	id++;
- 			$(this).attr('id', 'id'+id);				
-				if(i!=temp.length)
-				{
-					//alert(temp[i]);
-				var check=temp[i];
-				$(this).append("<br/>" + temp[i]);
-				}
-				i++;
-			});	
-		}); 
-   // function forResponse(text)
-   // {
-    	
-			// alert("clicked");
-		//	for(i=0;i<2;i++)
-		//		{
-		      
-		      
-		//		}
-  //  }
+     function parseJSON(text)
+     {
+    	 var r = JSON.parse(text);
+    	 //var temp=["hello","world","hello","world","hello","world","aslsafn","asfasfaf", "csdfsf","sdsdfsdf"];
+    	 $(document).ready(function() 
+    	 {
+    		var html = $('.boxed').html();
+    		for (var i=0;i<r.result.length-1;i++) 
+    		{
+    			$('div.box').attr('id', 'id'+i);
+    			$('.boxed').append(html);
+    		}
+    		//not inside for loop
+    		var ID = 0;
+    		$('div.box').each(function() 
+    		{
+    		 	ID++;
+    			$(this).attr('id', 'id'+ID);
+    			$(this).attr('onclick', 'location.href="https://maps.google.com/maps?saddr='+currentLat+','+currentLng+'&daddr='+r.result[i].name+','+r.result[i].vicinity+'"');
+    		});
+    		
+    		var id = 0;
+    		var i=0;
+    		$('div.setbox').each(function() 
+    		{
+    		 	id++;
+    			$(this).attr('id', 'id'+id);				
+    			if(i!=r.result.length)
+    			{
+    				var check=r.result[i];
+    				$(this).append("<br/>" + r.result[i].name);
+    			}
+    			i++;
+    		});	
+    	}); 
+     }
     
      
      function onError(event) 
@@ -175,7 +183,6 @@
 </head>
 
 <body>
-	</div>
 	<div class="pre-loader">
 		<div class="load-con">
 			<img src="img/eco/logo.png" class="animated fadeInDown" alt="">
@@ -186,7 +193,7 @@
 			</div>
 		</div>
 	</div>
-
+	<button name="my_full_name" onclick="fb_publish()" value="My Name"></button>
 	<header>
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">

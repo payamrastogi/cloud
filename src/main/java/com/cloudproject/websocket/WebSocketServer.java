@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import com.cloudproject.fetcher.Config;
 import com.cloudproject.fetcher.HttpFetcher;
+import com.cloudproject.fetcher.JSONParser;
 import com.cloudproject.fetcher.RequestParameters;
 
 
@@ -47,11 +48,10 @@ public class WebSocketServer
 			String[] types = { "cafe", "bakery", "restaurant" };
 			requestParam.setTypes(types);
 			HttpFetcher httpFetcher = new HttpFetcher(config, requestParam);
-			JSONObject json = httpFetcher.readJsonFromUrl();
+			JSONParser parser = new JSONParser();
+			JSONObject json = parser.parseJson(httpFetcher.readJsonFromUrl());
 			System.out.println(json.toString());
-			JSONArray array = json.getJSONArray("results");
-			JSONObject jsonObj = array.getJSONObject(0);
-			session.getBasicRemote().sendText(jsonObj.getString("name")+"#"+array.getJSONObject(1).getString("name"));
+			session.getBasicRemote().sendText(json.toString());
 		}
 		catch(IOException | JSONException e)
 		{

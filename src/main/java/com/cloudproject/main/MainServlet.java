@@ -45,7 +45,6 @@ public class MainServlet extends HttpServlet
 		ParseDB parseDB = new ParseDB();
 		parseDB.submitUserDetails(facebookDetails);
 		
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("facebookId", fbProfileData.get("id"));
 		
