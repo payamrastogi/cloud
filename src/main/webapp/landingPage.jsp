@@ -37,16 +37,16 @@
         xfbml: true
     }); 
     
-    function fb_publish(name, address, direction) 
+    function fb_publish(name, link, picture) 
     {
         FB.ui(
           		{
             		method: 'feed',
             		message: 'Message here.',
-            		name: 'Name of the Restaurant',
-            		description: 'Adress of the Restaurant',
-            		link:'https://maps.google.com/maps?saddr=40.725153500000005,-74.063848&daddr=Guerrero Deli Restaurant,6 Jordan Avenue, Jersey City',
-            	 	picture: 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBgAAAAK0YplYnimH7y8TjQcUl3XVEto07Ir-IVlBkuZxz1Z3P51lg-sgv8xa6MMIVPxbLJsMJgU1OmZQOewkkrSafGW-7nqdNqgW3QqoJCQrsal14WO2OvqqCH8S9a6AAwy0ccPPKqBpl3VZnVuRdaLVbtVPMLrvKOOZgzDp1po9MxbL9EhCCVXR7XhHh34fnthh2YXDrGhRtfkghrxCqZtIIlQRI-66ciq-GRg&key=AIzaSyDnxFImus4mQi1h9cicwn4z_z1MkGlT3eA'
+            		name:name ,
+            		//description:address,
+            		link: link,
+            	 	picture: picture
           		},
           		function(response) 
           		{
@@ -64,6 +64,7 @@
 </script>
 
 <script>
+
 	var currentLat;
 	var currentLng;
 	window.onload = function() 
@@ -90,7 +91,6 @@
 		    		startpos = position;
 		    		currentLat = startPos.coords.latitude;
 		      		currentLng = startPos.coords.longitude;
-		    		webSocket.send(startPos.coords.latitude+","+startPos.coords.longitude);
 		    	});
 		  }
 	};
@@ -135,12 +135,11 @@
      {
          setbox.innerHTML += "<br/>" + text;
      }
-     
      function parseJSON(text)
      {
-    	 var r = JSON.parse(text);
-    	 //var temp=["hello","world","hello","world","hello","world","aslsafn","asfasfaf", "csdfsf","sdsdfsdf"];
-    	 $(document).ready(function() 
+		var r = JSON.parse(text);
+     
+    	  $(document).ready(function() 
     	 {
     		var html = $('.boxed').html();
     		for (var i=0;i<r.result.length-1;i++) 
@@ -154,23 +153,86 @@
     		{
     		 	ID++;
     			$(this).attr('id', 'id'+ID);
-    			$(this).attr('onclick', 'location.href="https://maps.google.com/maps?saddr='+currentLat+','+currentLng+'&daddr='+r.result[i].name+','+r.result[i].vicinity+'"');
+    			
     		});
     		
     		var id = 0;
     		var i=0;
-    		$('div.setbox').each(function() 
+    		$('div.box-title').each(function() 
     		{
     		 	id++;
     			$(this).attr('id', 'id'+id);				
     			if(i!=r.result.length)
     			{
     				var check=r.result[i];
-    				$(this).append("<br/>" + r.result[i].name);
+    				$(this).append("<h1>" + r.result[i].name+"</h1>  " );
     			}
     			i++;
+    		});
+    		var ids = 0;
+    		var j=0;
+    		$('div.setbox').each(function() 
+    		{
+    		 	ids++;
+    			$(this).attr('id', 'id'+ids);	
+    			if(j!=r.result.length)
+    			{
+    				var check=r.result[j];
+    				function altimg(){
+    					
+    				}
+    				$(this).append("<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+r.result[j].photoReference+"&key=AIzaSyDnxFImus4mQi1h9cicwn4z_z1MkGlT3eA alt='' onerror='this.src=http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png' style='width:100px; float:right; padding-top:25px;' />")
+    				$(this).append("<br/>" + r.result[j].vicinity);
+    				if(r.result[j].open ==true)
+    				{
+    					$(this).append("<br/> It's open");
+    				}
+    				else if(r.result[j].open ==false)
+    				{
+    					$(this).append("<br/> It's closed");
+    				}
+    				else
+    				{
+    					$(this).append("<br/> Not Available");
+    				}
+    				var rating=((r.result[j].rating)*20)+"%";
+    				$(this).append("<br/>Rating:"+r.result[j].rating+"<div class='rating_bar'><div  class='rating' style='width:"+rating +"%' ></div></div>");
+    			}
+    			j++;
     		});	
+    		var ids = 0;
+    		var j=0;
+    		$('img.location').each(function() 
+    	    {
+    	    	ids++;
+    	    	$(this).attr('id', 'id'+ids);	
+    	    	if(j!=r.result.length)
+    	    	{
+    	    		var check=r.result[j];
+    	    		$(this).attr('onclick', 'location.href="https://maps.google.com/maps?saddr='+currentLat+','+currentLng+'&daddr='+r.result[j].name+','+r.result[j].vicinity+'"');			
+    	    	}
+    	    	j++;
+    	    });	
+    		
+    		var ids = 0;
+      		var j=0;
+      		$('img.share').each(function() 
+      	    {
+      	    	ids++;
+      	    	$(this).attr('id', 'id'+ids);	
+      	    	if(j!=r.result.length)
+      	    	{
+      	    		var name=r.result[j].name;
+      	    		var address=r.result[j].vicinity;
+      	    		var link='https://maps.google.com/maps?saddr='+currentLat+','+currentLng+'&daddr='+r.result[j].name+','+r.result[j].vicinity;
+      	    		var picture='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+r.result[j].photoReference+'&key=AIzaSyDnxFImus4mQi1h9cicwn4z_z1MkGlT3eA'; 
+      	    		$(this).attr('onclick', 'fb_publish("'+ name +'","'+ link +'","'+ picture +'")');
+      	    	}
+      	    	j++;
+      	    });	
+    		
     	}); 
+	    console.log(JSON.parse(text));
      }
     
      
@@ -193,7 +255,7 @@
 			</div>
 		</div>
 	</div>
-	<button name="my_full_name" onclick="fb_publish()" value="My Name"></button>
+	
 	<header>
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -225,52 +287,22 @@
 		</nav>
 	</header>
 
-	<div class="container">
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="..." alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="..." alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    ...
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+	 <div class="container">
+	<!-- carousal -->
 		<div class="row boxed">
 			<div class="col-lg-4" >
-				<div class="box" onclick="location.href='#'"  size="20">
-					<div class="box-title" >
-						<h1>Lorem Ipsum</h1>
+				<div class="box" size="20">
+				<div class ="col-lg-12 title-bag">
+					<div class="box-title col-lg-8" >
+					<!-- 	<h1>Lorem Ipsum</h1> -->
+					</div>
+					<div class="col-lg-2"><img class ='location' src='img/eco/location.png' /></div>
+					<div class="col-lg-2"><img class ='share' src='img/eco/share.png' /></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="setbox"></div>
-							<h6>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</h6>
+							
 						</div>
 					</div>
 				</div>
