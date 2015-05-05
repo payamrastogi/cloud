@@ -135,10 +135,11 @@
      {
          setbox.innerHTML += "<br/>" + text;
      }
+     
      function parseJSON(text)
      {
 		var r = JSON.parse(text);
-     
+     	
     	  $(document).ready(function() 
     	 {
     		var html = $('.boxed').html();
@@ -235,12 +236,17 @@
 	    console.log(JSON.parse(text));
      }
     
-     
      function onError(event) 
      {
          alert(event.data);
      }
      
+     function onSearch()
+     {
+    	 var searchInput = document.getElementById('txtSearch').value;
+    	 //alert(searchInput);
+    	 webSocket.send('@'+searchInput);
+     }
 </script>
 </head>
 
@@ -270,7 +276,16 @@
 						src="img/eco/logo.png" alt="" class="logo">
 					</a>
 				</div>
-
+				<div class="row">
+ 					 <div class="col-lg-6">
+   						 <div class="input-group">
+     						<input type="text" class="form-control" id="txtSearch" name="txtSearch" placeholder="Search for...">
+     						<span class="input-group-btn">
+       							 <button class="btn btn-default" type="button" id="btnSearch" name="btnSearch" onclick=onSearch()>Go!</button>
+     					 	</span>
+   						 </div><!-- /input-group -->
+  				</div><!-- /.col-lg-6 -->
+  				</div><!-- /.row -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">

@@ -40,11 +40,25 @@ public class WebSocketServer
 			File file = new File(homedir, "Dropbox/repositories/cloud/src/main/resources/config.properties");
 			Config config = new Config(file);
 			RequestParameters requestParam = new RequestParameters();
-			requestParam.setLatitude(Double.parseDouble(location[0]));
-			requestParam.setLongitude(Double.parseDouble(location[1]));
-			requestParam.setRadius(10000);
-			requestParam.setRankby("distance");
-			requestParam.setOpenNow(true);
+			if(!message.contains("@"))
+			{
+				requestParam.setLatitude(Double.parseDouble(location[0]));
+				requestParam.setLongitude(Double.parseDouble(location[1]));
+				requestParam.setRadius(10000);
+				requestParam.setRankby("distance");
+				requestParam.setOpenNow(false);
+				requestParam.setNearBySearch(true);
+			}
+			else
+			{
+				message = message.replaceAll("\\s", "+");
+				requestParam.setLatitude(0.0);
+				requestParam.setLongitude(0.0);
+				requestParam.setNearBySearch(false);
+				requestParam.setQuery(message.substring(1));
+				requestParam.setRankby("prominence");
+				requestParam.setOpenNow(false);
+			}
 			String[] types = { "cafe", "bakery", "restaurant" };
 			requestParam.setTypes(types);
 			HttpFetcher httpFetcher = new HttpFetcher(config, requestParam);

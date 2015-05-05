@@ -14,6 +14,7 @@ public class RequestParameters
 	private boolean openNow;
 	private String[] types;
 	private String query;
+	private boolean nearBySearch;
 	
 	public String getKey() 
 	{
@@ -105,6 +106,14 @@ public class RequestParameters
 		this.query = query;
 	}
 	
+	public boolean isNearBySearch() {
+		return nearBySearch;
+	}
+
+	public void setNearBySearch(boolean nearBySearch) {
+		this.nearBySearch = nearBySearch;
+	}
+	
 	public String generateUrlNearBySearch() throws UnsupportedEncodingException
 	{
 		StringBuilder sb = new StringBuilder();
@@ -122,5 +131,19 @@ public class RequestParameters
 		sb.append(URLEncoder.encode(s, "UTF-8"));
 		return sb.toString();
 		
+	}
+	
+	public String generateUrlTextSearch() throws UnsupportedEncodingException
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("/textsearch").append("/")
+		.append("json").append("?")
+		.append("key=").append(this.getKey()).append("&")
+		.append("query=").append(this.getQuery());
+		if(this.getLatitude()!=0.0)
+			sb.append("&location=").append(this.getLatitude()).append(",").append(this.getLongitude()).append("&");
+		if(this.isOpenNow())
+			sb.append("opennow").append("&");
+		return sb.toString();
 	}
 }
