@@ -135,11 +135,23 @@
      {
          setbox.innerHTML += "<br/>" + text;
      }
+     function onSearch()
+     {
+    	 
+    	 $('div.boxed').empty();
+    	 $('.boxed').append('<div class="col-lg-4" ><div class="box" size="20" id="hello"><div class ="col-lg-12 title-bag"><div class="box-title col-lg-8" ></div><div class="col-lg-2"><img class ="location" src="img/eco/location.png" /></div><div class="col-lg-2"><img class ="share" src="img/eco/share.png" /></div></div><div class="row"><div class="col-lg-12"><div class="setbox"></div></div></div></div>');
+    	 var searchInput = document.getElementById('txtSearch').value;
+    	 //alert(searchInput);
+    	 webSocket.send('@'+searchInput);
+     }
      
      function parseJSON(text)
      {
+    	 
+    	 
+ 
 		var r = JSON.parse(text);
-     	
+     	//alert(r.result[0].rating);
     	  $(document).ready(function() 
     	 {
     		var html = $('.boxed').html();
@@ -170,6 +182,8 @@
     			}
     			i++;
     		});
+    		var id = 0;
+    		var i=0;
     		var ids = 0;
     		var j=0;
     		$('div.setbox').each(function() 
@@ -241,13 +255,13 @@
          alert(event.data);
      }
      
-     function onSearch()
-     {
-    	 var searchInput = document.getElementById('txtSearch').value;
-    	 //alert(searchInput);
-    	 webSocket.send('@'+searchInput);
-     }
+     
 </script>
+<script>
+        $(document).ready(function() {
+            appMaster.preLoader();
+        }); 
+        </script>
 </head>
 
 <body>
@@ -281,7 +295,7 @@
    						 <div class="input-group">
      						<input type="text" class="form-control" id="txtSearch" name="txtSearch" placeholder="Search for...">
      						<span class="input-group-btn">
-       							 <button class="btn btn-default" type="button" id="btnSearch" name="btnSearch" onclick=onSearch()>Go!</button>
+       							 <button class="btn btn-default" type="button" id="btnSearch" name="btnSearch" onclick=onSearch() >Go!</button>
      					 	</span>
    						 </div><!-- /input-group -->
   				</div><!-- /.col-lg-6 -->
@@ -306,7 +320,7 @@
 	<!-- carousal -->
 		<div class="row boxed">
 			<div class="col-lg-4" >
-				<div class="box" size="20">
+				<div class="box" size="20" id="hello">
 				<div class ="col-lg-12 title-bag">
 					<div class="box-title col-lg-8" >
 					<!-- 	<h1>Lorem Ipsum</h1> -->
@@ -336,11 +350,7 @@
 	<script src="js/scripts.js"></script>
 	<script src="js/script.js"></script>
 
-	<script>
-        $(document).ready(function() {
-            appMaster.preLoader();
-        });
-    </script>
+	
 
 </body>
 
