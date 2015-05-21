@@ -24,6 +24,7 @@ public class ProfileServlet extends HttpServlet
 		ParseDB parseDb = new ParseDB();
 		parseDb.getUserDetails(s);
 		System.out.println(s);
+		request.setAttribute("userDetails", parseDb.getUserDetails(s));
 		RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
 		rd.forward(request, response);
 	}

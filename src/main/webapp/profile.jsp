@@ -1,10 +1,12 @@
 <%@ page import="com.cloudproject.facebook.FBConnection"%>
+<%@ page import="com.cloudproject.main.UserDetails" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%><!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
 <!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
 <!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
 <%
 	FBConnection fbConnection = new FBConnection();
+	UserDetails userDetails = (UserDetails)request.getAttribute("userDetails");
 %>
 <html lang="en" class="no-js">
 <!--<![endif]-->
@@ -59,4 +61,28 @@
 			<!-- /.container-->
 		</nav>
 	</header>
+	<div class="container">
+	<!-- carousal -->
+		<div class="row boxed">
+			<div class="col-lg-4" >
+				<div class="box" size="20" id="hello">
+				<div class ="col-lg-12 title-bag">
+					<div class="box-title col-lg-8" >
+						<h1><%= userDetails.getFirstName() %> <%= userDetails.getLastName() %></h1>
+					</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="setbox"></div>
+								Email: <%= userDetails.getEmail() %>
+								<br/>
+								Gender: <%= userDetails.getGender() %>
+						</div>
+					</div>
+				</div>
+			</div>
+			  
+		</div>
+		
+	</div>
 </html>

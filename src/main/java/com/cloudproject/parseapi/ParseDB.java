@@ -60,33 +60,22 @@ public class ParseDB
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("userDetails");
         query.whereEqualTo("facebookId", facebookId);
         final UserDetails userDetails = new UserDetails();
-        query.findInBackground(new FindCallback<ParseObject>()
+        List<ParseObject> list = null;
+        try 
         {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) 
-            {
-                if (e == null) 
-                {
-                   if(list!=null && list.size()>0)
-                   {
-                	   ParseObject parseObject = list.get(0);
-                	   userDetails.setFirstName((String)parseObject.get("firstName"));
-                	   userDetails.setLastName((String)parseObject.get("lastName"));
-                	   userDetails.setEmail((String)parseObject.get("email"));
-                	   userDetails.setGender((String)parseObject.get("gender"));
-                	   System.out.println(parseObject.get("firstName"));
-                   }
-                   else
-                   {
-                	   //error!!
-                   }
-                } 
-                else 
-                {
-                	e.printStackTrace();
-                }
-            }
-        });
+			list = query.find();
+			ParseObject parseObject = list.get(0);
+			userDetails.setFirstName((String)parseObject.get("firstName"));
+			userDetails.setLastName((String)parseObject.get("lastName"));
+     	   	userDetails.setEmail((String)parseObject.get("email"));
+     	   	userDetails.setGender((String)parseObject.get("gender"));
+     	   	System.out.println(parseObject.get("firstName"));
+		} 
+        catch (ParseException e) 
+        {
+			e.printStackTrace();
+		}
+        
         return userDetails;
 	}
 }
