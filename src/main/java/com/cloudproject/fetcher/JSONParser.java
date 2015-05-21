@@ -36,8 +36,13 @@ public class JSONParser
 				obj.put("open", "false");
 			if(temp.has("photos"))
 				obj.put("photoReference", temp.getJSONArray("photos").getJSONObject(0).get("photo_reference"));
-			else
+			else if(temp.has("icon"))
+			{
+				obj.put("icon", temp.get("icon"));
 				obj.put("photoReference", "");
+			}
+
+				
 			resultArray.put(obj);
 		}
 		result.put("result", resultArray);

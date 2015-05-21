@@ -56,7 +56,8 @@ public class WebSocketServer
 				requestParam.setLongitude(0.0);
 				requestParam.setNearBySearch(false);
 				requestParam.setQuery(message.substring(1));
-				requestParam.setRankby("prominence");
+				requestParam.setRadius(10000);
+				requestParam.setRankby("distance");
 				requestParam.setOpenNow(false);
 			}
 			String[] types = { "cafe", "bakery", "restaurant" };

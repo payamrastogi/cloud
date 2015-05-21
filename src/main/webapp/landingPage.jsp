@@ -236,7 +236,11 @@ function saveToParseSharing(name) {
     				function altimg(){
     					
     				}
-    				$(this).append("<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+r.result[j].photoReference+"&key=AIzaSyDnxFImus4mQi1h9cicwn4z_z1MkGlT3eA alt='' onerror='this.src=http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png' style='width:100px; float:right; padding-top:25px;' />")
+    				if(r.result[j].photoReference!='')
+    					$(this).append("<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+r.result[j].photoReference+"&key=AIzaSyDnxFImus4mQi1h9cicwn4z_z1MkGlT3eA alt='' onerror='this.onerror=null;this.src=http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png' style='width:100px; float:right; padding-top:25px;' />");
+    				else 
+    					$(this).append("<img src="+r.result[j].icon+" alt='' onerror='this.onerror=null;this.src=http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png' style='width:100px; float:right; padding-top:25px;' />");
+    					
     				$(this).append("<br/>" + r.result[j].vicinity);
     				if(r.result[j].open ==true)
     				{
