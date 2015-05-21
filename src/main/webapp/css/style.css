@@ -46,4 +46,4 @@ a.noshow{text-decoration:none;}
 .setbox{padding-left:10px; padding-right:10px;}
 .setbox img{height:100px !important;}
 .box-title h1{font-size:17px; color:#fff;  margin:0; }
-.location,.share{max-width:30px; padding-top:20px;}
+.location,.share, .checkingIn{max-width:30px; padding-top:20px;}

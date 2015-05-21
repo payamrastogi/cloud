@@ -1,4 +1,3 @@
-<!doctype html>
 <!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
 <!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
 <!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
@@ -7,7 +6,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8">
-<title>Oleose App Landing Page | Bootstrap Theme</title>
+<title>Appetite</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -23,13 +22,56 @@
 
 <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://www.parsecdn.com/js/parse-1.3.5.min.js"></script>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script type="text/javascript">
+Parse.initialize("vwftD52imOBMOLEpUWlTUD52WjoxO8GAlMwIsh63", "uZ0E9tAtgRmWP24stwM78PruTWdlFZGwJz8uFF41");
+CheckingInObject = Parse.Object.extend("CheckingIn");
+SharingObject = Parse.Object.extend("Sharing");
+var facebookId = <%= session.getAttribute("facebookId") %>
+function saveToParse(name, checkedInAt) {
+	var checkingInObject = new CheckingInObject();
+	checkingInObject.set("name", name);
+	checkingInObject.set("facebookId", facebookId);
+	checkingInObject.set("checkedInAt", checkedInAt);
+	checkingInObject.save(null, {
+		  success: function(checkingInObject) {
+		    // Execute any logic that should take place after the object is saved.
+		    alert('you are checked in successfully');
+		  },
+		  error: function(checkingInObject, error) {
+		    // Execute any logic that should take place if the save fails.
+		    // error is a Parse.Error with an error code and message.
+		    alert('Failed to create new object, with error code: ' + error.message);
+		  }
+		});
+}
 
-<script language="javascript" type="text/javascript">
+function saveToParseSharing(name) {
+	var sharingObject = new sharingObject();
+	sharingObject.set("name", name);
+	sharingObject.set("facebookId", facebookId);
+	sharingObject.save(null, {
+		  success: function(sharingObject) {
+		    // Execute any logic that should take place after the object is saved.
+		    alert('saved successfully');
+		  },
+		  error: function(checkingInObject, error) {
+		    // Execute any logic that should take place if the save fails.
+		    // error is a Parse.Error with an error code and message.
+		    alert('Failed to create new object, with error code: ' + error.message);
+		  }
+		});
+}
+
+
+</script>
+
+<script type="text/javascript">
     FB.init({
         appId: '404087249752808',
         status: true, 
@@ -53,6 +95,7 @@
             		if (response && response.post_id)
             		{
               			alert('Post was published.');
+              			saveToParseSharing(name);
             		} 
             		else 
             		{
@@ -147,9 +190,6 @@
      
      function parseJSON(text)
      {
-    	 
-    	 
- 
 		var r = JSON.parse(text);
      	//alert(r.result[0].rating);
     	  $(document).ready(function() 
@@ -246,6 +286,20 @@
       	    	j++;
       	    });	
     		
+      		var ids = 0;
+      		var j=0;
+      		$('img.checkingIn').each(function() 
+      	    {
+      	    	ids++;
+      	    	$(this).attr('id', 'id'+ids);	
+      	    	if(j!=r.result.length)
+      	    	{
+      	    		var name=r.result[j].name;
+      	    		var d = new Date();
+      	    		$(this).attr('onclick', 'saveToParse("'+name+'","'+ d +'")');
+      	    	}
+      	    	j++;
+      	    });	
     	}); 
 	    console.log(JSON.parse(text));
      }
@@ -305,9 +359,9 @@
 					id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#about">Home</a></li>
+						<li><a href="index.jsp">Home</a></li>
 						<li><a href="#search">Search</a></li>
-						<li><a href="#profile">Profile</a></li>
+						<li><a href="./profile">Profile</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -327,6 +381,7 @@
 					</div>
 					<div class="col-lg-2"><img class ='location' src='img/eco/location.png' /></div>
 					<div class="col-lg-2"><img class ='share' src='img/eco/share.png' /></div>
+					<div class="col-lg-2"><img class ='checkingIn' src='img/eco/share.png' /></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-12">

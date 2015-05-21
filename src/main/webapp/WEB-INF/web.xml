@@ -7,8 +7,19 @@
   	<servlet-name>FacebookAuthentication</servlet-name>
   	<servlet-class>com.cloudproject.main.MainServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>Profile</servlet-name>
+  	<servlet-class>com.cloudproject.main.ProfileServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>FacebookAuthentication</servlet-name>
   	<url-pattern>/fbhome</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Profile</servlet-name>
+  	<url-pattern>/profile</url-pattern>
   </servlet-mapping>
 </web-app>

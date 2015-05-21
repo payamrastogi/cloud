@@ -52,4 +52,33 @@ public class ParseDB
             }
         });
 	}
+	
+	
+	public void getUserDetails(final String facebookId)
+	{
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("userDetails");
+        query.whereEqualTo("facebookId", facebookId);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) 
+            {
+                if (e == null) 
+                {
+                   if(list!=null && list.size()>0)
+                   {
+                	   System.out.println(list);
+                   }
+                   else
+                   {
+                	   //error!!
+                   }
+                } 
+                else 
+                {
+                	e.printStackTrace();
+                }
+            }
+        });
+	}
 }
