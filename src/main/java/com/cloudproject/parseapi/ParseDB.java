@@ -9,12 +9,13 @@ import org.parse4j.ParseQuery;
 import org.parse4j.callback.FindCallback;
 
 import com.cloudproject.facebook.FacebookDetails;
+import com.cloudproject.main.UserDetails;
 
 public class ParseDB 
 {
 	public ParseDB()
 	{
-		Parse.initialize("", "");
+		Parse.initialize("vwftD52imOBMOLEpUWlTUD52WjoxO8GAlMwIsh63", "xIrh6opaWrQunvl51cKWxSurWJL4x9hfpjeenyq5");
 	}
 
 	
@@ -54,10 +55,11 @@ public class ParseDB
 	}
 	
 	
-	public void getUserDetails(final String facebookId)
+	public UserDetails getUserDetails(final String facebookId)
 	{
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("userDetails");
         query.whereEqualTo("facebookId", facebookId);
+        final UserDetails userDetails = new UserDetails();
         query.findInBackground(new FindCallback<ParseObject>()
         {
             @Override
@@ -67,7 +69,12 @@ public class ParseDB
                 {
                    if(list!=null && list.size()>0)
                    {
-                	   System.out.println(list);
+                	   ParseObject parseObject = list.get(0);
+                	   userDetails.setFirstName((String)parseObject.get("firstName"));
+                	   userDetails.setLastName((String)parseObject.get("lastName"));
+                	   userDetails.setEmail((String)parseObject.get("email"));
+                	   userDetails.setGender((String)parseObject.get("gender"));
+                	   System.out.println(parseObject.get("firstName"));
                    }
                    else
                    {
@@ -80,5 +87,6 @@ public class ParseDB
                 }
             }
         });
+        return userDetails;
 	}
 }

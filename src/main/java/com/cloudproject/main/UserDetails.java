@@ -6,6 +6,7 @@ public class UserDetails
 	private String firstName;
 	private String LastName;
 	private String email;
+	private String gender;
 	
 	public String getFacebookId()
 	{
@@ -45,6 +46,14 @@ public class UserDetails
 	public void setEmail(String email) 
 	{
 		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 }
