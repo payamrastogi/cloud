@@ -18,13 +18,9 @@
 <link rel="stylesheet" href="css/slick.css">
 <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
 <link rel="stylesheet" href="css/eco.css">
-<link rel="stylesheet" href="css/magnify.css">
-<link rel='stylesheet prefetch' href='http://dimsemenov-static.s3.amazonaws.com/dist/magnific-popup.css'>
+
 
 <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-<script src='http://dimsemenov-static.s3.amazonaws.com/dist/jquery.magnific-popup.min.js'></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/prefixfree.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
 <script src="http://www.parsecdn.com/js/parse-1.3.5.min.js"></script>
@@ -58,7 +54,7 @@ function saveToParse(name, checkedInAt) {
 		});
 }
 
-function getDetails(name)
+function getDetails(i,name)
 {
 	var query = new Parse.Query(CheckingInObject);
 	query.equalTo("name", name);
@@ -66,9 +62,8 @@ function getDetails(name)
 	{
 		  success: function(results) 
 		  {
-		    alert("Successfully retrieved " + results.length + " scores.");
-		    $('.checkingIn').popover('show');
-		    // Do something with the returned Parse.Object values
+			  $("#popOverBox"+i).append('<p># CheckedIn: '+results.length+'</p>');
+		    
 		  },
 		  error: function(error) 
 		  {
@@ -83,8 +78,9 @@ function getDetails(name)
 	{
 		  success: function(results) 
 		  {
-		    alert("Successfully retrieved " + results.length + " scores.");
+		    //alert("Successfully retrieved " + results.length + " scores.");
 		    // Do something with the returned Parse.Object values
+			  $("#popOverBox"+i).append('<p># Shared: '+results.length+'</p>');
 		  },
 		  error: function(error) 
 		  {
@@ -228,7 +224,7 @@ var getd=getDetails(name);
      {
     	 
     	 $('div.boxed').empty();
-    	 $('.boxed').append('<div class="col-lg-4 col-xs-12" ><div class="box" size="20" id="hello"><div class ="col-lg-12 col-xs-12 title-bag" ><div class="box-title col-lg-6 col-xs-12"  ></div><div class="col-lg-2 col-xs-4"><img class ="location" src="img/eco/location.png" /></div><div class="col-lg-2 col-xs-4"><img class ="share" src="img/eco/share.png" /></div><div class="col-lg-2 col-xs-4"><img class ="checkingIn" src="img/eco/check.png" /></div></div><div class="row"><div class="col-lg-12"><div class="setbox"></div></div></div></div>');
+    	 $('.boxed').append('<div class="col-lg-4 col-xs-12" ><div class="box" size="20" id="hello"><div class ="col-lg-12 col-xs-12 title-bag" ><div class="box-title col-lg-6 col-xs-12" data-placement="bottom"  ></div><div class="col-lg-2 col-xs-4"><img class ="location" src="img/eco/location.png" /></div><div class="col-lg-2 col-xs-4"><img class ="share" src="img/eco/share.png" /></div><div class="col-lg-2 col-xs-4"><img class ="checkingIn" src="img/eco/check.png" /></div></div><div class="row"><div class="col-lg-12"><div class="setbox"></div></div></div></div>');
     	 var searchInput = document.getElementById('txtSearch').value;
     	 //alert(searchInput);
     	 webSocket.send('@'+searchInput);
@@ -244,6 +240,7 @@ var getd=getDetails(name);
     		for (var i=0;i<r.result.length-1;i++) 
     		{
     			$('div.box').attr('id', 'id'+i);
+    			
     			$('.boxed').append(html);
     		}
     		//not inside for loop
@@ -265,6 +262,7 @@ var getd=getDetails(name);
     			{
     				var check=r.result[i];
     				$(this).append("<h1>" + r.result[i].name+"</h1>  " );
+    				$(this).attr('rel', 'popover'+id);
     			}
     			i++;
     		});
@@ -346,11 +344,19 @@ var getd=getDetails(name);
       	    	{
       	    		var name=r.result[j].name;
       	    		var d = new Date();
-      	    		//$(this).attr('onclick', 'saveToParse("'+name+'","'+ d +'")');
-      	    		$(this).attr('onclick', 'getDetails("'+name+'")');
+      	    		$(this).attr('onclick', 'saveToParse("'+name+'","'+ d +'")');
+      	    		//$(this).attr('onclick', 'getDetails("'+name+'")');
       	    	}
       	    	j++;
       	    });	
+      		
+      		for (var i=1;i<r.result.length;i++) 
+    		{
+      			$("[rel='popover"+i+"']").popover({
+      	    		html: 'true', 
+      	    		content : '<div id="popOverBox'+i+'" onclick="getDetails(\''+i+'\',\''+r.result[i-1].name+'\')">View Details</div>'
+      	    		});
+    		}
     	}); 
 	    console.log(JSON.parse(text));
      }
@@ -359,25 +365,11 @@ var getd=getDetails(name);
      {
          alert(event.data);
      }
-    $(document).ready(function() {
-     $('#box-title').popover('show')
-    });
-</script>
-<script type="text/javascript">
-$('#inline-popups').magnificPopup({
-	  delegate: 'a',
-	  removalDelay: 500, //delay removal by X to allow out-animation
-	  callbacks: {
-	    beforeOpen: function() {
-	       this.st.mainClass = this.st.el.attr('data-effect');
-	    }
-	  },
-	  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-	});
+	function run(id)
+	{
+    		
+	}
 
-
-
-	
 </script>
 <script>
         $(document).ready(function() {
@@ -447,14 +439,14 @@ $('#inline-popups').magnificPopup({
 		
 	</header>
 
-	 <div class="container">
+ <div class="container">
 	
 	<!-- carousal -->
 		<div class="row boxed">
 			<div class="col-lg-4 col-xs-12" >
 				<div class="box" size="20" id="hello">
 				<div class ="col-lg-12 col-xs-12 title-bag" >
-					<div class="box-title col-lg-6 col-xs-12" >
+					<div class="box-title col-lg-6 col-xs-12" data-placement='bottom'>
 					<!-- 	<h1>Lorem Ipsum</h1> -->
 					</div>
 					<div class="col-lg-2 col-xs-4"><img class ='location' src='img/eco/location.png' /></div>
@@ -471,15 +463,9 @@ $('#inline-popups').magnificPopup({
 			</div>
 			  
 		</div>
-		<div class="links">
-  <h4>Text-based:</h4>
-  <ul id="inline-popups">
-    <li><a href="#test-popup" data-effect="mfp-3d-unfold">3d unfold</a></li>
-  </ul>
-  </div>
-		<div id="test-popup" class="white-popup mfp-with-anim mfp-hide">You may put any HTML here. This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</div>
-	</div>
-	
+		<a title='Bottom Popover' rel='popover' data-placement='bottom'>
+Bottom Popover</a>
+		  </div>	
 	<script src="js/slick.min.js"></script>
 	<script src="js/placeholdem.min.js"></script>
 	<script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
@@ -487,7 +473,6 @@ $('#inline-popups').magnificPopup({
 	<script src="js/waypoints.min.js"></script>
 	<script src="js/scripts.js"></script>
 	<script src="js/script.js"></script>
-
 	
 
 </body>
