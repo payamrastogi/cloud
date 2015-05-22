@@ -13,7 +13,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Oleose App Landing Page | Bootstrap Theme</title>
+    <title>Appetite App Landing Page | Bootstrap Theme</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
@@ -70,17 +70,13 @@
                             <li><a href="#about">about</a>
                             </li>
                             <li><a href="#features">features</a>
-                            </li>
-                            <li><a href="#reviews">reviews</a>
-                            </li>
+                            </li>                           
                             <li><a href="#screens">screens</a>
                             </li>
                             <li><a href="#demo">demo</a>
                             </li>
                             <li><a class="getApp" href="#getApp">Login</a>
-                            </li>
-                            <li><a href="#support">support</a>
-                            </li>
+                            </li>                          
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -122,19 +118,13 @@
                         </div>
 
                         <div class="tp-caption large_white_bold sft" data-x="550" data-y="center" data-hoffset="0" data-voffset="-80" data-speed="500" data-start="1200" data-easing="Power4.easeOut">
-                            Oleose
+                            Appetite
                         </div>
-                        <div class="tp-caption large_white_light sfr" data-x="770" data-y="center" data-hoffset="0" data-voffset="-80" data-speed="500" data-start="1400" data-easing="Power4.easeOut">
+                        <div class="tp-caption large_white_light sfr" data-x="820" data-y="center" data-hoffset="0" data-voffset="-80" data-speed="500" data-start="1400" data-easing="Power4.easeOut">
                             App
-                        </div>
-                        <div class="tp-caption large_white_light sfb" data-x="550" data-y="center" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1500" data-easing="Power4.easeOut">
-                            Landing Theme
-                        </div>
-
-                        <div class="tp-caption sfb hidden-xs" data-x="550" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1000" data-start="1700" data-easing="Power4.easeOut">
-                            <a href="#about" class="btn btn-primary inverse btn-lg">LEARN MORE</a>
-                        </div>
-                        <div class="tp-caption sfr hidden-xs" data-x="730" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1500" data-start="1900" data-easing="Power4.easeOut">
+                        </div>                       
+                        
+                        <div class="tp-caption sfr hidden-xs" data-x="680" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1500" data-start="1900" data-easing="Power4.easeOut">
                             <a href="#getApp" class="btn btn-default btn-lg">Login</a>
                         </div>
 
@@ -157,7 +147,7 @@
                         </div>
 
                         
-                        <div class="tp-caption large_white_light sft" data-x="center" data-y="250" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
+                        <div class="tp-caption large_white_light sft" data-x="center" data-y="220" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
                             Every Pixel <i class="fa fa-heart"></i>
                         </div>
                         
@@ -208,11 +198,11 @@
                            App Landing Page
                         </div>
                         <div class="tp-caption small_light_white sfb hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="80" data-speed="1000" data-start="1600" data-easing="Power4.easeOut">
-                           <p>Nulla pretium libero interdum, tempus lorem non, rutrum diam. <br> Quisque pellentesque diam sed pulvinar lobortis. Vestibulum ante <br>ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+                           <p>*******************************************. <br> Qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq <br>iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.</p>
                         </div>
 
                         <div class="tp-caption lfl hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="160" data-speed="1000" data-start="1800" data-easing="Power4.easeOut">
-                            <a href="#" class="btn btn-primary inverse btn-lg">Purchase</a>
+                            <a href="#" class="btn btn-primary inverse btn-lg">Get SMS</a>
                         </div>
                         
                         
@@ -234,9 +224,9 @@
             <div class="container">
                 
                 <div class="section-heading scrollpoint sp-effect3">
-                    <h1>About Us</h1>
+                    <h1>About App</h1>
                     <div class="divider"></div>
-                    <p>Oleose Beautiful App Landing Page</p>
+                    <p>A Beautiful App for recommending Restaurant & still keeping your pockets heavy provideing Coupons  </p>
                 </div>
 
                 <div class="row">
@@ -244,28 +234,28 @@
                         <div class="about-item scrollpoint sp-effect2">
                             <i class="fa fa-download fa-2x"></i>
                             <h3>Easy setup</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            <p>App has been deployed on Aws via code,load balancing is being used .</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6" >
                         <div class="about-item scrollpoint sp-effect5">
                             <i class="fa fa-mobile fa-2x"></i>
                             <h3>On-the-go</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            <p>All the Data is stored on cloud using parser API on the go :) .</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6" >
                         <div class="about-item scrollpoint sp-effect5">
                             <i class="fa fa-users fa-2x"></i>
-                            <h3>Social connect</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            <h3>Cloud</h3>
+                            <p>All the data is kept on cloud Via Parser Api.</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6" >
                         <div class="about-item scrollpoint sp-effect1">
                             <i class="fa fa-sliders fa-2x"></i>
-                            <h3>Dedicated support</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            <h3>Intelligent Reccomandation</h3>
+                            <p>User acitvity, preferences , Location , Time of the day.</p>
                         </div>
                     </div>
                 </div>
@@ -283,11 +273,11 @@
                     <div class="col-md-4 col-sm-4 scrollpoint sp-effect1">
                         <div class="media media-left feature">
                             <a class="pull-right" href="#">
-                                <i class="fa fa-cogs fa-2x"></i>
+                                <i class="fa fa-picture-o fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">User Settings</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">coupons</h3>
+                                Only the once you will love to see.
                             </div>
                         </div>
                         <div class="media media-left feature">
@@ -295,8 +285,8 @@
                                 <i class="fa fa-envelope fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">Messages Inbox</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">SMS</h3>
+                                SMS notifications and application link via Twillio.
                             </div>
                         </div>
                         <div class="media media-left feature">
@@ -304,26 +294,27 @@
                                 <i class="fa fa-users fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">Friends List</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">Profile</h3>
+                                FaceBook Aoth is done and User profile is fetched from facebook.
                             </div>
                         </div>
                         <div class="media media-left feature">
-                            <a class="pull-right" href="#">
+                           <!--  <a class="pull-right" href="#">
                                 <i class="fa fa-comments fa-2x"></i>
                             </a>
                             <div class="media-body">
                                 <h3 class="media-heading">Live Chat Messages</h3>
                                 Lorem ipsum dolor sit amet.
                             </div>
+                            -->
                         </div>
                         <div class="media media-left feature">
                             <a class="pull-right" href="#">
                                 <i class="fa fa-calendar fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">Calendar / Planner</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">scheduler</h3>
+                                User actity are observed for user preference prediction.
                             </div>
                         </div>
                     </div>
@@ -336,8 +327,8 @@
                                 <i class="fa fa-map-marker fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">My Places</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">Navigation</h3>
+                                App Navigates to selected Restaurant.
                             </div>
                         </div>
                         <div class="media feature">
@@ -345,8 +336,8 @@
                                 <i class="fa fa-film fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">Media Player™</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">Demo Video</h3>
+                                for demonstration of application.
                             </div>
                         </div>
                         <div class="media feature">
@@ -354,120 +345,35 @@
                                 <i class="fa fa-compass fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">Intuitive Statistics</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">Recommendation System</h3>
+                                Restaurant will be recommended on basis of user activity, location of user and Time of the day.
                             </div>
                         </div>
                         <div class="media feature">
                             <a class="pull-left" href="#">
-                                <i class="fa fa-picture-o fa-2x"></i>
+                                <i class="fa fa-cogs fa-2x"></i>
                             </a>
                             <div class="media-body">
-                                <h3 class="media-heading">Weather on-the-go</h3>
-                                Lorem ipsum dolor sit amet.
+                                <h3 class="media-heading">operation</h3>
+                                load balancing, deploying App via Code , Kafka Implementaion .
                             </div>
                         </div>
                         <div class="media active feature">
-                            <a class="pull-left" href="#">
+                          <!--  <a class="pull-left" href="#">
                                 <i class="fa fa-plus fa-2x"></i>
                             </a>
-                            <div class="media-body">
-                                <h3 class="media-heading">And much more!</h3>
+                              <div class="media-body">
+                                <h3 class="media-heading">!</h3>
                                 Lorem ipsum dolor sit amet.
                             </div>
+                          -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="reviews">
-            <div class="container">
-                <div class="section-heading inverse scrollpoint sp-effect3">
-                    <h1>Reviews</h1>
-                    <div class="divider"></div>
-                    <p>Read What's The People Are Saying About Us</p>
-                </div>
-                <div class="row">
-                    <div class="col-md-10 col-md-push-1 scrollpoint sp-effect3">
-                        <div class="review-filtering">
-                            <div class="review">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="review-person">
-                                            <img src="http://api.randomuser.me/portraits/women/94.jpg" alt="" class="img-responsive">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="review-comment">
-                                            <h3>“I love Oleose, I highly recommend it, Everyone Try It Now”</h3>
-                                            <p>
-                                                - Krin Fox
-                                                <span>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star-o fa-lg"></i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="review rollitin">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="review-person">
-                                            <img src="http://api.randomuser.me/portraits/men/70.jpg" alt="" class="img-responsive">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="review-comment">
-                                            <h3>“Oleaose Is The Best Stable, Fast App I Have Ever Experienced”</h3>
-                                            <p>
-                                                - Theodore Willis
-                                                <span>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star-half-o fa-lg"></i>
-                                                    <i class="fa fa-star-o fa-lg"></i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="review rollitin">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="review-person">
-                                            <img src="http://api.randomuser.me/portraits/men/93.jpg" alt="" class="img-responsive">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="review-comment">
-                                            <h3>“Keep It Up Guys Your Work Rules, Cheers :)”</h3>
-                                            <p>
-                                                - Ricky Grant
-                                                <span>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star fa-lg"></i>
-                                                    <i class="fa fa-star-half-o fa-lg"></i>
-                                                    <i class="fa fa-star-o fa-lg"></i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      
 
         <section id="screens">
             <div class="container">
@@ -475,14 +381,14 @@
                 <div class="section-heading scrollpoint sp-effect3">
                     <h1>Screens</h1>
                     <div class="divider"></div>
-                    <p>See what’s included in the App</p>
+                    <p>ScreeShots of the App</p>
                 </div>
 
                 <div class="filter scrollpoint sp-effect3">
                     <a href="javascript:void(0)" class="button js-filter-all active">All Screens</a>
-                    <a href="javascript:void(0)" class="button js-filter-one">User Access</a>
-                    <a href="javascript:void(0)" class="button js-filter-two">Social Network</a>
-                    <a href="javascript:void(0)" class="button js-filter-three">Media Players</a>
+                    <a href="javascript:void(0)" class="button js-filter-one">Home</a>
+                    <a href="javascript:void(0)" class="button js-filter-two">Profile</a>
+                    <a href="javascript:void(0)" class="button js-filter-three">Demo Video</a>
                 </div>
                 <div class="slider filtering scrollpoint sp-effect5" >
                     <div class="one">
@@ -491,19 +397,19 @@
                     </div>
                     <div class="two">
                         <img src="img/eco/screens/menu.jpg" alt="">
-                        <h4>Toggel Menu</h4>
+                        <h4>Home</h4>
                     </div>
                     <div class="three">
                         <img src="img/eco/screens/weather.jpg" alt="">
-                        <h4>Weather Forcast</h4>
+                        <h4>Coupons</h4>
                     </div>
                     <div class="one">
                         <img src="img/eco/screens/signup.jpg" alt="">
-                        <h4>Sales Analysis</h4>
+                        <h4>Restaurants</h4>
                     </div>
                     <div class="one">
                         <img src="img/eco/screens/calendar.jpg" alt="">
-                        <h4>Event Calendar</h4>
+                        <h4>Scheduler</h4>
                     </div>
                     <div class="two">
                         <img src="img/eco/screens/options.jpg" alt="">
@@ -563,64 +469,7 @@
             </div>
         </section>
 
-        <section id="support" class="doublediagonal">
-            <div class="container">
-                <div class="section-heading scrollpoint sp-effect3">
-                    <h1>Support</h1>
-                    <div class="divider"></div>
-                    <p>For more info and support, contact us!</p>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 scrollpoint sp-effect1">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Your name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Your email">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea cols="30" rows="10" class="form-control" placeholder="Your message"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                </form>
-                            </div>
-                            <div class="col-md-4 col-sm-4 contact-details scrollpoint sp-effect2">
-                                <div class="media">
-                                    <a class="pull-left" href="#" >
-                                        <i class="fa fa-map-marker fa-2x"></i>
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">4, Some street, California, USA</h4>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a class="pull-left" href="#" >
-                                        <i class="fa fa-envelope fa-2x"></i>
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a href="mailto:support@oleose.com">support@oleose.com</a>
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a class="pull-left" href="#" >
-                                        <i class="fa fa-phone fa-2x"></i>
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">+1 234 567890</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        
         <footer>
             <div class="container">
                 <a href="#" class="scrollpoint sp-effect3">
@@ -632,8 +481,7 @@
                     <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-facebook fa-lg"></i></a>
                 </div>
                 <div class="rights">
-                    <p>Copyright &copy; 2014</p>
-                    <p>Template by <a href="http://www.scoopthemes.com" target="_blank">ScoopThemes</a></p>
+                    <p>Copyright &copy; 2015</p>
                 </div>
             </div>
         </footer>

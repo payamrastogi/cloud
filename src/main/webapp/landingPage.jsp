@@ -18,10 +18,15 @@
 <link rel="stylesheet" href="css/slick.css">
 <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
 <link rel="stylesheet" href="css/eco.css">
+<link rel="stylesheet" href="css/magnify.css">
+<link rel='stylesheet prefetch' href='http://dimsemenov-static.s3.amazonaws.com/dist/magnific-popup.css'>
 
-
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+<script src='http://dimsemenov-static.s3.amazonaws.com/dist/jquery.magnific-popup.min.js'></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/prefixfree.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://www.parsecdn.com/js/parse-1.3.5.min.js"></script>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <!--[if lt IE 9]>
@@ -29,12 +34,14 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script type="text/javascript">
+
 Parse.initialize("vwftD52imOBMOLEpUWlTUD52WjoxO8GAlMwIsh63", "uZ0E9tAtgRmWP24stwM78PruTWdlFZGwJz8uFF41");
-CheckingInObject = Parse.Object.extend("CheckingIn");
-SharingObject = Parse.Object.extend("Sharing");
+var CheckingInObject = Parse.Object.extend("CheckingIn");
+var sharingObject = Parse.Object.extend("Sharing");
 var facebookId = <%= session.getAttribute("facebookId") %>
 function saveToParse(name, checkedInAt) {
 	var checkingInObject = new CheckingInObject();
+	//console.log("2");
 	checkingInObject.set("name", name);
 	checkingInObject.set("facebookId", facebookId);
 	checkingInObject.set("checkedInAt", checkedInAt);
@@ -51,33 +58,71 @@ function saveToParse(name, checkedInAt) {
 		});
 }
 
-function saveToParseSharing(name) {
-	var sharingObject = new sharingObject();
-	sharingObject.set("name", name);
-	sharingObject.set("facebookId", facebookId);
-	sharingObject.save(null, {
-		  success: function(sharingObject) {
-		    // Execute any logic that should take place after the object is saved.
-		    alert('saved successfully');
+function getDetails(name)
+{
+	var query = new Parse.Query(CheckingInObject);
+	query.equalTo("name", name);
+	query.find(
+	{
+		  success: function(results) 
+		  {
+		    alert("Successfully retrieved " + results.length + " scores.");
+		    $('.checkingIn').popover('show');
+		    // Do something with the returned Parse.Object values
 		  },
-		  error: function(checkingInObject, error) {
-		    // Execute any logic that should take place if the save fails.
-		    // error is a Parse.Error with an error code and message.
-		    alert('Failed to create new object, with error code: ' + error.message);
+		  error: function(error) 
+		  {
+		    alert("Error: " + error.code + " " + error.message);
 		  }
-		});
+		}
+	);
+	
+	var query2 = new Parse.Query(sharingObject);
+	query2.equalTo("name", name);
+	query2.find(
+	{
+		  success: function(results) 
+		  {
+		    alert("Successfully retrieved " + results.length + " scores.");
+		    // Do something with the returned Parse.Object values
+		  },
+		  error: function(error) 
+		  {
+		    alert("Error: " + error.code + " " + error.message);
+		  }
+		}
+	);
 }
-
-
+var getd=getDetails(name);
+//$(document).ready(function(){ getDetails("21 Club");});
 </script>
-
 <script type="text/javascript">
+
     FB.init({
         appId: '404087249752808',
         status: true, 
         cookie: true, 
         xfbml: true
     }); 
+    
+    function saveToParseSharing(name) {
+    	console.log("print 0");
+    	var so = new sharingObject();
+    	console.log("1");
+    	so.set("name", name);
+    	so.set("facebookId", facebookId);
+    	so.save(null, {
+    		  success: function(so) {
+    		    // Execute any logic that should take place after the object is saved.
+    		    alert('saved successfully');
+    		  },
+    		  error: function(checkingInObject, error) {
+    		    // Execute any logic that should take place if the save fails.
+    		    // error is a Parse.Error with an error code and message.
+    		    alert('Failed to create new object, with error code: ' + error.message);
+    		  }
+    		});
+    }
     
     function fb_publish(name, link, picture) 
     {
@@ -96,6 +141,7 @@ function saveToParseSharing(name) {
             		{
               			alert('Post was published.');
               			saveToParseSharing(name);
+              			//alert("hello");
             		} 
             		else 
             		{
@@ -106,7 +152,7 @@ function saveToParseSharing(name) {
      	}
 </script>
 
-<script>
+<script type="text/javascript">
 
 	var currentLat;
 	var currentLng;
@@ -182,7 +228,7 @@ function saveToParseSharing(name) {
      {
     	 
     	 $('div.boxed').empty();
-    	 $('.boxed').append('<div class="col-lg-4" ><div class="box" size="20" id="hello"><div class ="col-lg-12 title-bag"><div class="box-title col-lg-8" ></div><div class="col-lg-2"><img class ="location" src="img/eco/location.png" /></div><div class="col-lg-2"><img class ="share" src="img/eco/share.png" /></div></div><div class="row"><div class="col-lg-12"><div class="setbox"></div></div></div></div>');
+    	 $('.boxed').append('<div class="col-lg-4 col-xs-12" ><div class="box" size="20" id="hello"><div class ="col-lg-12 col-xs-12 title-bag" ><div class="box-title col-lg-6 col-xs-12"  ></div><div class="col-lg-2 col-xs-4"><img class ="location" src="img/eco/location.png" /></div><div class="col-lg-2 col-xs-4"><img class ="share" src="img/eco/share.png" /></div><div class="col-lg-2 col-xs-4"><img class ="checkingIn" src="img/eco/check.png" /></div></div><div class="row"><div class="col-lg-12"><div class="setbox"></div></div></div></div>');
     	 var searchInput = document.getElementById('txtSearch').value;
     	 //alert(searchInput);
     	 webSocket.send('@'+searchInput);
@@ -300,7 +346,8 @@ function saveToParseSharing(name) {
       	    	{
       	    		var name=r.result[j].name;
       	    		var d = new Date();
-      	    		$(this).attr('onclick', 'saveToParse("'+name+'","'+ d +'")');
+      	    		//$(this).attr('onclick', 'saveToParse("'+name+'","'+ d +'")');
+      	    		$(this).attr('onclick', 'getDetails("'+name+'")');
       	    	}
       	    	j++;
       	    });	
@@ -312,8 +359,25 @@ function saveToParseSharing(name) {
      {
          alert(event.data);
      }
-     
-     
+    $(document).ready(function() {
+     $('#box-title').popover('show')
+    });
+</script>
+<script type="text/javascript">
+$('#inline-popups').magnificPopup({
+	  delegate: 'a',
+	  removalDelay: 500, //delay removal by X to allow out-animation
+	  callbacks: {
+	    beforeOpen: function() {
+	       this.st.mainClass = this.st.el.attr('data-effect');
+	    }
+	  },
+	  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+	});
+
+
+
+	
 </script>
 <script>
         $(document).ready(function() {
@@ -336,6 +400,7 @@ function saveToParseSharing(name) {
 	
 	<header>
 
+
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -344,21 +409,25 @@ function saveToParseSharing(name) {
 						data-target="#bs-example-navbar-collapse-1">
 						<span class="fa fa-bars fa-lg"></span>
 					</button>
+					<div class="row">
+					<div class="col-lg-3">
 					<a class="navbar-brand" href="index.html"> <img
 						src="img/eco/logo.png" alt="" class="logo">
 					</a>
-				</div>
-				<div class="row">
- 					 <div class="col-lg-6">
-   						 <div class="input-group">
+					</div>
+				
+			
+ 					 <div class="col-lg-5">
+   						 <div class="input-group pad-top">
      						<input type="text" class="form-control" id="txtSearch" name="txtSearch" placeholder="Search for...">
      						<span class="input-group-btn">
        							 <button class="btn btn-default" type="button" id="btnSearch" name="btnSearch" onclick=onSearch() >Go!</button>
      					 	</span>
    						 </div><!-- /input-group -->
   				</div><!-- /.col-lg-6 -->
-  				</div><!-- /.row -->
+  				<!-- /.row -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
+					 <div class="col-lg-3">
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 
@@ -368,24 +437,29 @@ function saveToParseSharing(name) {
 						<li><a href="./profile">Profile</a></li>
 					</ul>
 				</div>
+				</div>
+				</div>
 				<!-- /.navbar-collapse -->
 			</div>
 			<!-- /.container-->
+			</div>
 		</nav>
+		
 	</header>
 
 	 <div class="container">
+	
 	<!-- carousal -->
 		<div class="row boxed">
-			<div class="col-lg-4" >
+			<div class="col-lg-4 col-xs-12" >
 				<div class="box" size="20" id="hello">
-				<div class ="col-lg-12 title-bag">
-					<div class="box-title col-lg-8" >
+				<div class ="col-lg-12 col-xs-12 title-bag" >
+					<div class="box-title col-lg-6 col-xs-12" >
 					<!-- 	<h1>Lorem Ipsum</h1> -->
 					</div>
-					<div class="col-lg-2"><img class ='location' src='img/eco/location.png' /></div>
-					<div class="col-lg-2"><img class ='share' src='img/eco/share.png' /></div>
-					<div class="col-lg-2"><img class ='checkingIn' src='img/eco/share.png' /></div>
+					<div class="col-lg-2 col-xs-4"><img class ='location' src='img/eco/location.png' /></div>
+					<div class="col-lg-2 col-xs-4"><img class ='share' src='img/eco/share.png' /></div>
+					<div class="col-lg-2 col-xs-4"><img class ='checkingIn' src='img/eco/check.png'/></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
@@ -397,10 +471,15 @@ function saveToParseSharing(name) {
 			</div>
 			  
 		</div>
-		
+		<div class="links">
+  <h4>Text-based:</h4>
+  <ul id="inline-popups">
+    <li><a href="#test-popup" data-effect="mfp-3d-unfold">3d unfold</a></li>
+  </ul>
+  </div>
+		<div id="test-popup" class="white-popup mfp-with-anim mfp-hide">You may put any HTML here. This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</div>
 	</div>
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	
 	<script src="js/slick.min.js"></script>
 	<script src="js/placeholdem.min.js"></script>
 	<script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>

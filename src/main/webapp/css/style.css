@@ -10,8 +10,8 @@ body{background: url(../img/eco/bk-eco.jpg) repeat-y;}
 h1.front-title{font-size:72px; display:block; margin-left:auto; margin-right:auto; text-align:center; margin-top:150px;}
 h6.front-subtitle{font-size:16px; display:block; margin-left:auto; margin-right:auto; text-align:center;}
 .nav-page{background-color:#1D2123;border:0px; border-radius:0px;}
-.box{margin:20px 0; background:#fff; padding-bottom:20px; cursor:default; height:200px;}
-.title-bag{background:url(../img/eco/bk-eco-ga.jpg);}
+.box{margin:20px 0; background:#fff; padding-bottom:20px; cursor:default; height:250px;}
+.title-bag{background:url(../img/eco/bk-eco-ga.jpg); padding-bottom:7px;}
 .box-title h1{color:#fff !important; padding:20px 10px !important;}
 .navbar-fixed-top, .navbar-fixed-bottom{position:relative;}
 a.noshow{text-decoration:none;}
@@ -47,3 +47,53 @@ a.noshow{text-decoration:none;}
 .setbox img{height:100px !important;}
 .box-title h1{font-size:17px; color:#fff;  margin:0; }
 .location,.share, .checkingIn{max-width:30px; padding-top:20px;}
+.pad-top{padding-top:20px;}
+ul.navbar-nav{padding-top:20px !important;}
+@media screen and (max-width:768px){
+	.box-title{height: 40px}
+	.box{height:225px !important;}
+}
+
+html,body {margin:0; padding:10px; -webkit-backface-visibility:hidden;}
+
+/* text-based popup styling */
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 25px;
+  width:auto;
+  max-width: 400px;
+  margin: 0 auto; 
+}
+.mfp-3d-unfold {
+  /* start state */
+  /* animate in */
+  /* animate out */
+}
+.mfp-3d-unfold .mfp-content {
+  perspective: 2000px;
+}
+.mfp-3d-unfold .mfp-with-anim {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  transform: rotateY(-60deg);
+}
+.mfp-3d-unfold.mfp-bg {
+  opacity: 0;
+  transition: all 0.5s;
+}
+.mfp-3d-unfold.mfp-ready .mfp-with-anim {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+.mfp-3d-unfold.mfp-ready.mfp-bg {
+  opacity: 0.8;
+}
+.mfp-3d-unfold.mfp-removing .mfp-with-anim {
+  transform: rotateY(60deg);
+  opacity: 0;
+}
+.mfp-3d-unfold.mfp-removing.mfp-bg {
+  opacity: 0;
+}
