@@ -37,8 +37,8 @@ public class WebSocketServer
 			String[] location = message.split(",");
 			File homedir = new File(System.getProperty("user.home"));
 			System.out.println(homedir);
-			//File file = new File("/Users/payamrastogi/Dropbox/repositories/cloud/src/main/resources/config.properties");
-			File file = new File("/home/ec2-user/config.properties");
+			File file = new File("/Users/payamrastogi/Dropbox/repositories/cloud/src/main/resources/config.properties");
+			//File file = new File("/home/ec2-user/config.properties");
 			Config config = new Config(file);
 			RequestParameters requestParam = new RequestParameters();
 			if(!message.contains("@"))

@@ -463,8 +463,7 @@ var getd=getDetails(name);
 			</div>
 			  
 		</div>
-		<a title='Bottom Popover' rel='popover' data-placement='bottom'>
-Bottom Popover</a>
+		<a title='Bottom Popover' rel='popover' data-placement='bottom'></a>
 		  </div>	
 	<script src="js/slick.min.js"></script>
 	<script src="js/placeholdem.min.js"></script>

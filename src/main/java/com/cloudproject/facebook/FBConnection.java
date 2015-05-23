@@ -13,7 +13,7 @@ public class FBConnection
 {
 	public static final String FB_APP_ID = "404087249752808";
 	public static final String FB_APP_SECRET = "eaa595c63fb49cc6e125687d93d1f846";
-	public static final String REDIRECT_URI = "http://pr1228.elasticbeanstalk.com//fbhome";
+	public static final String REDIRECT_URI = "http://localhost:8080/CloudProject/fbhome";
 
 	static String accessToken = "";
 
